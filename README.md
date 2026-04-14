@@ -1,4 +1,4 @@
-# 📰 Automated RSS News Aggregator
+# 📰 Ultimate RSS News Aggregator
 
 <div align="center">
   <h3>Automated RSS news agent with Telegram notifications</h3>
@@ -15,7 +15,6 @@
 - **💬 Telegram Integration**: Resilient API calls ensure 99.9% delivery rate with retry logic
 - **🧹 Smart Deduplication**: Automatically filters duplicate articles based on timestamps and titles
 - **🛡️ Error Handling**: Built-in resilience with configurable retry attempts (default: 5)
-- **📊 Comprehensive Logging**: All activity logged for audit and debugging purposes
 - **⚡ Fast Processing**: Optimized parsing keeps runtime under 2 minutes
 
 ---
@@ -80,12 +79,6 @@ python update_main_resilient.py
 ```
 Fetches all configured RSS feeds, compiles unique articles, and sends via Telegram.
 
-### View Logs
-```bash
-cat logs/cron_full.log
-tail -f logs/cron_full.log  # Monitor live activity
-```
-
 ---
 
 ## ⚙️ Configuration
@@ -119,10 +112,11 @@ Edit `rss_config.json`:
 ## 🕐 Scheduler Setup
 
 ### Option 1: Cron Job (Recommended)
+Create a cron job for daily 8 AM runs:
 ```bash
 crontab -e
-# Add this line for daily 8 AM runs:
-0 8 * * * python /path/to/Automated-RSS-News-Aggregator/update_main_resilient.py >> /path/to/Automated-RSS-News-Aggregator/logs/cron_full.log 2>&1
+# Add this line:
+0 8 * * * python /full/path/to/news_aggregator/update_main_resilient.py >> /full/path/to/logs/cron_full.log 2>&1
 ```
 
 ### Option 2: Systemd Service (Ubuntu/Debian)
@@ -141,10 +135,7 @@ Automated-RSS-News-Aggregator/
 ├── rss_config.json                # Configuration file
 ├── requirements.txt               # Python dependencies
 ├── README.md                     # This file!
-├── .gitignore                    # Git ignore rules
-├── logs/
-│   └── cron_full.log             # Automated run logs
-└── archive v2/                   # Deprecated code (don't push this!)
+└── .gitignore                    # Git ignore rules
 ```
 
 ---
