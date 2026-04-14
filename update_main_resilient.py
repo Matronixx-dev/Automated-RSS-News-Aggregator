@@ -149,4 +149,3 @@ if __name__ == "__main__":
         run_test_mode()
     else:
         run_full_aggregation()
-        return True  # Explicit return to avoid any ambiguity
