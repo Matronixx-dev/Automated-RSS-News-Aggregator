@@ -2,7 +2,7 @@
 
 <div align="center">
   <h3>Automated RSS news agent with Telegram notifications</h3>
-  <p><em>Uses Python scripting and LLM backend to automagically push RSS/News notifications to Telegram client on given intervals.</em></p>
+  <p><em>Uses Python scripting (and LLM backend if wanted) to automagically push RSS/News notifications to Telegram client on given intervals.</em></p>
   <hr>
 </div>
 
