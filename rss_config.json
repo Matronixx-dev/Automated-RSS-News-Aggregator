@@ -1,0 +1,41 @@
+{
+  "quick_feeds": [
+    {
+      "name": "BBC World News",
+      "url": "https://feeds.bbci.co.uk/news/world/rss.xml",
+      "keywords": ["politics", "international", "breaking"]
+    },
+    {
+      "name": "Al Jazeera English",
+      "url": "https://www.aljazeera.com/xml/rss/all.xml",
+      "keywords": ["international", "global", "middle east"]
+    }
+  ],
+  "full_feeds": [
+    {
+      "name": "TechCrunch",
+      "url": "https://techcrunch.com/feed/",
+      "keywords": ["technology", "startups", "business"]
+    },
+    {
+      "name": "The Verge",
+      "url": "https://www.theverge.com/rss/index.xml",
+      "keywords": ["technology", "science", "culture"]
+    },
+    {
+      "name": "Hacker News",
+      "url": "https://news.ycombinator.com/rss",
+      "keywords": ["tech", "startups", "programming"]
+    },
+    {
+      "name": "Ars Technica",
+      "url": "https://arstechnica.com/rss/",
+      "keywords": ["technology", "science", "policy"]
+    },
+    {
+      "name": "NPR News",
+      "url": "https://www.npr.org/rss/rss.php?id=1001",
+      "keywords": ["news", "national", "unbiased"]
+    }
+  ]
+}

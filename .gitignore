@@ -1,0 +1,67 @@
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment (venv, env, etc.)
+venv/
+ENV/
+env/
+.venv/
+
+# IDE & Editor Files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs (runtime logs - may contain secrets!)
+logs/
+*.log
+*.txt.log
+cron_full.log
+
+# Archive & Deprecated Code (keep locally, don't push)
+archive v2/
+archive*/
+deprecated/
+
+# Environment Variables & Secrets
+.env
+.env.*
+credentials.json
+secrets.py
+.config/
+
+# Temporary Files
+tmp/
+temp/
+*~
+
+# Testing & Debug Files
+test_*.py
+debug_log.txt
+health_check_resilient.log
