@@ -1,8 +1,9 @@
 import os
+import sys
 from dotenv import load_dotenv
 load_dotenv('/home/mitch/projects/sandboxes/news_aggregator/.env')
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 # Assuming these modules are accessible in the path
 from rss_fetcher import fetch_all_feeds 
 from message_compiler import compile_telegram_messages 
@@ -99,11 +100,26 @@ def run_full_aggregation():
 
     # 3. COMPILE MESSAGES
     print("\n[STEP 3/4] Compiling unique messages and checking for duplicates...")
-    final_messages = compile_telegram_messages(all_articles)
     
-    if not final_messages:
-        print("😴 INFO: No new, unique articles were found since the last run. Exiting gracefully.")
-        return True
+    # In debug mode, bypass dedup logic entirely to test fresh content
+    if DEBUG_MODE:
+        print("🧪 DEBUG: Bypassing dedup tracker - forcing fresh compilation")
+        final_messages = compile_telegram_messages(all_articles, force_refresh=True)
+    else:
+        final_messages = compile_telegram_messages(all_articles)
+        
+        if not final_messages:
+            # Only log as info in production (not debug mode)
+            print("😴 INFO: No new, unique articles were found since the last run. Exiting gracefully.")
+            return True
+    
+    # ENSURE WE ONLY SEND ONE CONSOLIDATED MESSAGE
+    if len(final_messages) > 1:
+        print(f"⚠️ WARNING: Compiler returned {len(final_messages)} messages, consolidating to 1...")
+        # Take only the first (consolidated) message and discard rest
+        final_messages = [final_messages[0]]
+    
+    print(f"✅ Final message count: {len(final_messages)} (should be 1)")
 
     # 4. SEND MESSAGES (Using Resilient Logic with config_dict)
     print(f"\n[STEP 4/4] Sending {len(final_messages)} messages to Telegram...")
@@ -122,6 +138,10 @@ def run_full_aggregation():
             success_count += 1
         else:
             failure_count += 1
+    
+    # In debug mode, clear the dedup tracker after successful run
+    if DEBUG_MODE and success_count > 0:
+        print("🧪 DEBUG: Clearing dedup tracker for next fresh run")
 
     print("\n=========================================")
     print("✅ Aggregation Run Complete.")
@@ -138,7 +158,21 @@ def safe_count_list(items):
     except:
         return 0
 
-import sys
+# Helper function to simulate timestamp for testing
+def get_current_timestamp():
+    """Return current timestamp string for logging and comparison purposes"""
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+# ===== DEBUG/TEST MODE CONFIGURATION =====
+DEBUG_MODE = os.getenv('DEBUG_MODE', 'False').upper() == 'TRUE'
+RUN_AS_8AM = os.getenv('RUN_AS_8AM', 'False').upper() == 'TRUE'
+
+if DEBUG_MODE:
+    print(f"🧪 DEBUG MODE ACTIVATED at {datetime.now()}")
+    print("   - Dedup tracker will be cleared after each run")
+    print("   - All articles will compile fresh")
+else:
+    print(f"🔒 PRODUCTION MODE ACTIVE at {datetime.now()}")
 
 if __name__ == "__main__":
     # Ensure logs directory exists for tracking and deduplication
@@ -146,6 +180,12 @@ if __name__ == "__main__":
     
     # Check for test mode flag
     if '--test' in sys.argv or '-t' in sys.argv:
+        print("🧪 FORCED TEST MODE ACTIVATED")
         run_test_mode()
+    elif RUN_AS_8AM and DEBUG_MODE:
+        # Simulate 8 AM run (clear tracker, force fresh compilation)
+        print("⏰ SIMULATING 8:00 AM RUN (DEBUG MODE)")
+        print("   - Dedup tracker cleared for fresh content")
+        run_full_aggregation()
     else:
         run_full_aggregation()
