@@ -1,67 +1,29 @@
-# Python Bytecode & Cache
+# Python bytecode (compiled)
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
 
-# Virtual Environment (venv, env, etc.)
-venv/
-ENV/
-env/
-.venv/
+# Environment variables - NEVER commit real .env files!
+.env
+.env.local
+.env.*.local
+!.env.example  # Allow example file for reference
+!README.md
 
-# IDE & Editor Files
+# Logs
+*.log
+
+# IDE / Editor files
 .idea/
 .vscode/
 *.swp
 *.swo
 *~
 
-# OS Generated Files
+# OS generated files
 .DS_Store
 Thumbs.db
-desktop.ini
 
-# Logs (runtime logs - may contain secrets!)
-logs/
-*.log
-*.txt.log
-cron_full.log
-
-# Archive & Deprecated Code (keep locally, don't push)
-archive v2/
-archive*/
-deprecated/
-
-# Environment Variables & Secrets
-.env
-.env.*
-credentials.json
-secrets.py
-.config/
-
-# Temporary Files
-tmp/
-temp/
-*~
-
-# Testing & Debug Files
-test_*.py
-debug_log.txt
-health_check_resilient.log
+# Runtime trackers (optional - comment out if you want to track them)
+dedup_tracker.json  # Or whatever your tracker is named
