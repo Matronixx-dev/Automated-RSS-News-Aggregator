@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **`update_main_resilient.py`**: Removed `force_refresh=True` parameter from `compile_telegram_messages()` call (line 107) to fix TypeError that was preventing DEBUG mode from running. The function signature in `message_compiler.py` did not accept this parameter, causing crashes when `DEBUG_MODE=TRUE` environment variable was set.
 
-## [2.1.0] - 2026-04-21 (This Release)
+## [2.1.0] - 2026-04-20 (This Release)
 
 ### Fixed
 
@@ -193,8 +193,8 @@ python update_main_resilient.py
 
 | Version | Date | Description |
 |---------|------|-------------|
-| 2.1.0 | 2026-04-21 | Fixed debug mode crash (force_refresh parameter removal) |
-| 2.1   | 2026-04017 | First major production release, major changes (See Changelog)
+| 2.1.0 | 2026-04-20 | Fixed debug mode crash (force_refresh parameter removal) |
+| 2.10  | 2026-04017 | First major production release, major changes (See Changelog)
 | 2.0.0 | TBD | Initial public release |
 | 1.x.* | TBD | Private development iterations |
 
