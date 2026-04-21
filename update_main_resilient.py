@@ -104,7 +104,8 @@ def run_full_aggregation():
     # In debug mode, bypass dedup logic entirely to test fresh content
     if DEBUG_MODE:
         print("🧪 DEBUG: Bypassing dedup tracker - forcing fresh compilation")
-        final_messages = compile_telegram_messages(all_articles, force_refresh=True)
+        # Note: force_refresh removed as it's not supported by compile_telegram_messages()
+        final_messages = compile_telegram_messages(all_articles)
     else:
         final_messages = compile_telegram_messages(all_articles)
         
