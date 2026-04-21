@@ -91,9 +91,9 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 ### Main Config File: `rss_config.json`
 
-Located at: `/home/mitch/projects/sandboxes/news_aggregator/rss_config.json`
+Located at: `/home/path/news_aggregator/rss_config.json`
 
-#### Quick Structure Overview:
+#### Example Structure:
 
 ```json
 {
@@ -179,7 +179,7 @@ crontab -e
 #### 2. Add This Line (Daily at 8:00 AM)
 
 ```cron
-0 8 * * * cd /home/mitch/projects/sandboxes/news_aggregator && PYTHONPATH=/home/mitch/projects/sandboxes/news_aggregator python3 update_main_resilient.py >> logs/aggregator.log 2>&1
+0 8 * * * cd /path/news_aggregator && PYTHONPATH=/home/USER/projects/news_aggregator python3 update_main_resilient.py >> logs/aggregator.log 2>&1
 ```
 
 #### 3. Verify Cron Setup
@@ -216,7 +216,7 @@ python3 update_main_resilient.py
 
 **Linux/macOS:**
 ```bash
-sudo -u mitch /bin/bash -c "cd /home/mitch/projects/sandboxes/news_aggregator && python3 update_main_resilient.py"
+sudo -u USER /bin/bash -c "cd /path/news_aggregator && python3 update_main_resilient.py"
 ```
 
 **Windows Command Prompt:**
@@ -257,8 +257,8 @@ cd C:\Path\To\News_Aggregator && python3 update_main_resilient.py
 
 ### Script Crashes During Debug Mode
 
-**Recent Fix:** The `force_refresh=True` parameter causing TypeError was removed in v2.1.0. If you're still seeing crashes:
-1. Update from latest version (v2.1.0+)
+**Recent Fix:** The `force_refresh=True` parameter causing TypeError was removed in v2.10.0. If you're still seeing crashes:
+1. Report an issue
 2. Run: `DEBUG_MODE=TRUE python3 update_main_resilient.py`
 
 ### Telegram Login Failed / API Connection Issues
@@ -274,7 +274,7 @@ cd C:\Path\To\News_Aggregator && python3 update_main_resilient.py
 
 ## Version History
 
-### v2.1.0 — Bug Fix Release (April 20, 2026)
+### v2.10.0 — Bug Fix Release (April 20, 2026)
 
 **What Changed:**
 - ✅ Removed `force_refresh=True` parameter causing TypeError in debug mode
@@ -286,7 +286,7 @@ cd C:\Path\To\News_Aggregator && python3 update_main_resilient.py
 
 ---
 
-### v2.1 — RSS Processing Enhancements (April 17, 2026)
+### v2.10 — RSS Processing Enhancements (April 17, 2026)
 
 **What Changed:**
 - ✅ Enhanced deduplication logic using hash-based tracking
@@ -348,7 +348,7 @@ If you encounter issues or have suggestions, please open an issue on GitHub. For
 
 <div align="center">
   
-**Made with ❤️ and ☕ by Matronixx-dev** Code written by Alfred Pennyworth (Powered by Qwen 3.5) 
+**Made with ❤️ and ☕ by Matronixx-dev (Mitch) ** Code written by Alfred Pennyworth (Powered by Qwen 3.5) 
 *April 2026 — Production News Aggregation Pipeline*
 
 </div>
